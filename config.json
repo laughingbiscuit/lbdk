@@ -1,0 +1,40 @@
+{
+  "apt": [
+    "curl",
+    "jq",
+    "gnupg",
+    "tmux",
+    "taskwarrior",
+    "ranger",
+    "openssl-tool",
+    "neovim",
+	"bash-completion",
+	"build-essential",
+	"libcurl3",
+	"libcurl4-openssl-dev",
+	"libssl1.0",
+	"libssl1.0-dev",
+	"libxml2",
+	"libxml2-dev",
+    "libcurl-dev",
+    "openssl-dev",
+    "libxml2-dev",
+    "pkg-config",
+    "ca-certificates",
+	"man"
+  ],
+  "npm": [
+    "js-beautify",
+    "eslint",
+	"godaddy-dns"
+  ],
+  "git": [
+      "seymen/accelerator-ci-maven",
+      "apickli/apickli",
+      "lastpass/lastpass-cli"
+  ],
+  "vim":[
+      "sbdchd/neoformat",
+      "w0rp/ale"
+  ]
+}

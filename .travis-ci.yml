@@ -1,0 +1,7 @@
+language: node_js
+services:
+  - docker
+before_install:
+  - docker build laughingbiscuit/devenv .
+script:
+  - docker run laughingbiscuit/devenv /home/devkit/test.sh
