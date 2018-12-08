@@ -77,4 +77,4 @@ if echo $ARGS | grep 'ui' -q  ; then
 fi
 
 # set up locales
-(sed -i 's/# en_GB.UTF-8/en_GB.UTF-8' /etc/locale-gen && sudo apt-get install -y locales && locale-gen) || true
+(sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale-gen && sudo apt-get install -y locales && locale-gen) || true
