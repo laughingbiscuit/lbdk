@@ -75,3 +75,6 @@ fi
 if echo $ARGS | grep 'ui' -q  ; then
 	sudo apt-get install -y xinit i3 arandr firefox-esr xfce4-terminal 
 fi
+
+# set up locales
+(sed -i 's/# en_GB.UTF-8/en_GB.UTF-8' /etc/locale-gen && sudo apt-get install -y locales && locale-gen) || true
