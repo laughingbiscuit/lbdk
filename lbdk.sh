@@ -39,7 +39,7 @@ done
 mkdir -p $HOME/.npm-global
 npm config set prefix $HOME/.npm-global
 for NPM_PKG in $(jq -r '.npm | join(" ")' $LBDK_CONF) ; do
-	sudo apt-get install -y $APT_PKG || true
+	sudo npm install -g $NPM_PKG || true
 done
 
 # pull git repos
@@ -77,4 +77,4 @@ if echo $ARGS | grep 'ui' -q  ; then
 fi
 
 # set up locales
-(sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen && sudo apt-get install -y locales && locale-gen) || true
+sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
