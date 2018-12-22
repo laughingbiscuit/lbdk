@@ -4,7 +4,7 @@
 #
 #	Description: A scrappy idempotent script to setup my Development Environment
 #	Requirements: Termux or Debian Stretch
-#	Usage: ./lbdk.sh [-s]
+#	Usage: ./lbdk.sh [--sudo] [--ui]
 #	Repo: https://github.com/laughingbiscuit/development-kit.git
 #	Author: LaughingBiscuit
 
@@ -28,7 +28,7 @@ sudo apt-get update
 sudo apt-get install -y curl jq git cmake gnupg
 
 # install nodejs lts
-(curl -sSL https://deb.nodesource.com/setup_10.x | bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
+(curl -sSL https://deb.nodesource.com/setup_10.x | sudo bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
 
 # install apt packages
 for APT_PKG in $(jq -r '.apt | join(" ")' $LBDK_CONF) ; do
@@ -77,4 +77,4 @@ if echo $ARGS | grep 'ui' -q  ; then
 fi
 
 # set up locales
-sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
+sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
