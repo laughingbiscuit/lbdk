@@ -73,7 +73,7 @@ fi
 
 # add x and some simple tools
 if echo $ARGS | grep 'ui' -q  ; then
-	sudo apt-get install -y xinit i3 arandr firefox-esr xfce4-terminal 
+	sudo apt-get install -y xinit i3 arandr firefox-esr xfce4-terminal feh compton
 fi
 
 # set up locales
