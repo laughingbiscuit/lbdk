@@ -7,7 +7,7 @@
 		"taskwarrior",
 		"ranger",
 		"openssl-tool",
-		"neovim",
+		"vim",
 		"bash-completion",
 		"build-essential",
 		"libcurl3",

@@ -48,8 +48,8 @@ for GIT_REPO in $(jq -r '.git | join(" ")' $LBDK_CONF) ; do
 	cd $HOME/projects && git clone --depth 1 https://github.com/$GIT_REPO || true
 done
 
-# setup nvim plugins
-PLUGIN_DIR=$HOME/.local/share/nvim/site/pack/git-plugins/start
+# setup vim plugins
+PLUGIN_DIR=$HOME/.vim/pack/git-plugins/start
 mkdir -p $PLUGIN_DIR
 for VIM_PLUGIN in $(jq -r '.vim | join(" ")' $LBDK_CONF) ; do
 	cd $PLUGIN_DIR && git clone --depth 1 https://github.com/$VIM_PLUGIN || true
