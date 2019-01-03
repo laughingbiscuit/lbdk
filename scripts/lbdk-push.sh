@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+set -o pipefail
 
 URL=$(git remote get-url origin)
 USER=$(lpass show -u Github)
