@@ -1,6 +1,7 @@
 FROM debian:stretch
 
-COPY . /home/devkit
-RUN /home/devkit/lbdk.sh
+WORKDIR /root
+COPY . /root/lbdk
+RUN /root/lbdk/lbdk.sh
 
 CMD bash
