@@ -26,7 +26,8 @@
         "openjdk-8-jdk-headless",
         "maven",
         "apache2-utils",
-        "openssh"
+        "openssh",
+        "plantuml"
     ],
     "npm": [
         "js-beautify",
