@@ -25,7 +25,8 @@
         "ctags",
         "openjdk-8-jdk-headless",
         "maven",
-        "apache2-utils"
+        "apache2-utils",
+        "openssh"
     ],
     "npm": [
         "js-beautify",
@@ -36,7 +37,7 @@
         "seymen/accelerator-ci-maven",
         "apickli/apickli",
         "lastpass/lastpass-cli",
-		"laughingbiscuit/apigee-reference-bank"
+        "laughingbiscuit/apigee-reference-bank"
     ],
     "vim": [
         "sbdchd/neoformat",
