@@ -18,7 +18,7 @@ tmux -V
 task --version
 ranger --version
 openssl version
-vim -v
+vim --version
 js-beautify --version
 eslint --version
 godaddy-dns --version
