@@ -77,7 +77,7 @@ if echo $ARGS | grep 'ui' -q  ; then
 fi
 
 # install php formatter (package managers are lacking...)
-sudo curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -O /usr/local/bin/php-cs-fixer
+sudo curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer
 sudo chmod a+x /usr/local/bin/php-cs-fixer
 
 # set up locales
