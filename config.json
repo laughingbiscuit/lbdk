@@ -27,7 +27,8 @@
         "maven",
         "apache2-utils",
         "openssh",
-        "plantuml"
+        "plantuml",
+        "php"
     ],
     "npm": [
         "js-beautify",
