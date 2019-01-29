@@ -76,5 +76,9 @@ if echo $ARGS | grep 'ui' -q  ; then
 	sudo apt-get install -y xinit i3 arandr firefox-esr xfce4-terminal feh compton
 fi
 
+# install php formatter (package managers are lacking...)
+sudo wget https://cs.symfony.com/download/php-cs-fixer-v2.phar -O /usr/local/bin/php-cs-fixer
+sudo chmod a+x /usr/local/bin/php-cs-fixer
+
 # set up locales
 sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
