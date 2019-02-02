@@ -28,6 +28,6 @@ php-cs-fixer -V
 # check that directories exist
 ls $HOME/projects/apickli
 ls $HOME/projects/accelerator-ci-maven
-ls $HOME/.local/share/nvim/site/pack/git-plugins/start/ale
-ls $HOME/.local/share/nvim/site/pack/git-plugins/start/neoformat
+ls $HOME/.vim/pack/git-plugins/start/ale
+ls $HOME/.vim/pack/git-plugins/start/neoformat
 ls $HOME/.dotfiles
