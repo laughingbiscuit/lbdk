@@ -34,7 +34,8 @@
         "js-beautify",
         "eslint",
         "godaddy-dns",
-		"apigeetool"
+		"apigeetool",
+		"nodemon"
     ],
     "git": [
         "seymen/accelerator-ci-maven",
