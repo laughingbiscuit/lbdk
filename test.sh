@@ -25,7 +25,7 @@ godaddy-dns --version
 lpass -v
 php-cs-fixer -V
 mutt -v 
-gcalcli --version
+which gcalcli
 pip -V
 
 # check that directories exist
