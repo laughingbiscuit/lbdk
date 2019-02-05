@@ -28,7 +28,8 @@
         "apache2-utils",
         "openssh",
         "plantuml",
-        "php"
+        "php",
+        "mutt"
     ],
     "npm": [
         "js-beautify",
