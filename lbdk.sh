@@ -25,7 +25,7 @@ fi
 
 # install some basic tools
 sudo apt-get update
-sudo apt-get install -y curl jq git cmake gnupg
+sudo apt-get install -y curl jq git cmake gnupg python-pip
 
 # install nodejs lts
 (curl -sSL https://deb.nodesource.com/setup_10.x | sudo bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
