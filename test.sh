@@ -24,7 +24,7 @@ eslint --version
 godaddy-dns --version
 lpass -v
 php-cs-fixer -V
-mutt -v | head -n 1
+mutt -v 
 gcalcli --version
 pip -V
 
