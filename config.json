@@ -47,5 +47,8 @@
     "vim": [
         "sbdchd/neoformat",
         "w0rp/ale"
-    ]
+    ],
+	"pip": [
+		"gcalcli"
+	]
 }

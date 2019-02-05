@@ -25,6 +25,8 @@ godaddy-dns --version
 lpass -v
 php-cs-fixer -V
 mutt -v | head -n 1
+gcalcli --version
+pip -V
 
 # check that directories exist
 ls $HOME/projects/apickli

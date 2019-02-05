@@ -55,6 +55,11 @@ for VIM_PLUGIN in $(jq -r '.vim | join(" ")' $LBDK_CONF) ; do
 	cd $PLUGIN_DIR && git clone --depth 1 https://github.com/$VIM_PLUGIN || true
 done
 
+# setup pip modules
+for PIP_PKG in $(jq -r '.pip | join(" ")' $LBDK_CONF) ; do
+	sudo pip install $PIP_PKG || true
+done
+
 # setup dotfiles
 if [ ! -d ~/.dotfiles ]; then
 	# move previous bashrc
