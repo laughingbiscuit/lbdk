@@ -25,7 +25,8 @@ fi
 
 # install some basic tools
 sudo apt-get update
-sudo apt-get install -y curl jq git cmake gnupg python-pip
+sudo apt-get install -y curl jq git cmake gnupg
+sudo apt-get install -y python-pip || true
 
 # install nodejs lts
 (curl -sSL https://deb.nodesource.com/setup_10.x | sudo bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
@@ -82,8 +83,8 @@ if echo $ARGS | grep 'ui' -q  ; then
 fi
 
 # install php formatter (package managers are lacking...)
-sudo curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer
-sudo chmod a+x /usr/local/bin/php-cs-fixer
+sudo curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $PREFIX/bin/php-cs-fixer
+sudo chmod a+x $PREFIX/bin/php-cs-fixer
 
 # set up locales
 sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
