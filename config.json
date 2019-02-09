@@ -27,13 +27,17 @@
         "maven",
         "apache2-utils",
         "openssh",
-        "plantuml"
+        "plantuml",
+        "php",
+        "mutt"
     ],
     "npm": [
         "js-beautify",
         "eslint",
         "godaddy-dns",
-        "http-server"
+        "http-server",
+        "apigeetool",
+        "nodemon"
     ],
     "git": [
         "seymen/accelerator-ci-maven",
@@ -44,5 +48,8 @@
     "vim": [
         "sbdchd/neoformat",
         "w0rp/ale"
+    ],
+    "pip": [
+        "gcalcli"
     ]
 }

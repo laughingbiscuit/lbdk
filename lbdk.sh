@@ -26,6 +26,7 @@ fi
 # install some basic tools
 sudo apt-get update
 sudo apt-get install -y curl jq git cmake gnupg
+sudo apt-get install -y python-pip || true
 
 # install nodejs lts
 (curl -sSL https://deb.nodesource.com/setup_10.x | sudo bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
@@ -55,6 +56,11 @@ for VIM_PLUGIN in $(jq -r '.vim | join(" ")' $LBDK_CONF) ; do
 	cd $PLUGIN_DIR && git clone --depth 1 https://github.com/$VIM_PLUGIN || true
 done
 
+# setup pip modules
+for PIP_PKG in $(jq -r '.pip | join(" ")' $LBDK_CONF) ; do
+	sudo pip install $PIP_PKG || true
+done
+
 # setup dotfiles
 if [ ! -d ~/.dotfiles ]; then
 	# move previous bashrc
@@ -75,6 +81,10 @@ fi
 if echo $ARGS | grep 'ui' -q  ; then
 	sudo apt-get install -y xinit i3 arandr firefox-esr xfce4-terminal feh compton
 fi
+
+# install php formatter (package managers are lacking...)
+sudo curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $PREFIX/bin/php-cs-fixer
+sudo chmod a+x $PREFIX/bin/php-cs-fixer
 
 # set up locales
 sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true

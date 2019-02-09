@@ -4,4 +4,4 @@ services:
 before_install:
   - docker build -t laughingbiscuit/devenv .
 script:
-  - docker run -it laughingbiscuit/devenv /home/devkit/test.sh
+  - docker run -it laughingbiscuit/devenv /root/lbdk/test.sh
