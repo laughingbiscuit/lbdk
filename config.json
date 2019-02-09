@@ -32,7 +32,8 @@
     "npm": [
         "js-beautify",
         "eslint",
-        "godaddy-dns"
+        "godaddy-dns",
+        "http-server"
     ],
     "git": [
         "seymen/accelerator-ci-maven",

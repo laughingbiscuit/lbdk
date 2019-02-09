@@ -23,6 +23,7 @@ js-beautify --version
 eslint --version
 godaddy-dns --version
 lpass -v
+which http-server
 
 # check that directories exist
 ls $HOME/projects/apickli
