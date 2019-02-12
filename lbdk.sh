@@ -23,6 +23,9 @@ if ! echo $ARGS | grep 'sudo' -q  ; then
 	}
 fi
 
+# create required dirs
+mkdir -p $LBDK_DIR/target
+
 # install some basic tools
 sudo apt-get update
 sudo apt-get install -y curl jq git cmake gnupg
