@@ -83,8 +83,8 @@ if echo $ARGS | grep 'ui' -q  ; then
 fi
 
 # install php formatter (package managers are lacking...)
-sudo curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $PREFIX/bin/php-cs-fixer
-sudo chmod a+x $PREFIX/bin/php-cs-fixer
+curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $LBDK_DIR/target/php-cs-fixer
+chmod +x $LBDK_DIR/target/php-cs-fixer
 
 # set up locales
 sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
