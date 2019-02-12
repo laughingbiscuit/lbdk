@@ -28,6 +28,7 @@ mkdir -p $LBDK_DIR/target
 
 # install some basic tools
 sudo apt-get update
+sudo apt-get upgrade -y
 sudo apt-get install -y curl jq git cmake gnupg
 sudo apt-get install -y python-pip || true
 

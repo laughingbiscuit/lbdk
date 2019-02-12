@@ -32,6 +32,7 @@
         "mutt"
     ],
     "npm": [
+        "npm",
         "js-beautify",
         "eslint",
         "godaddy-dns",
