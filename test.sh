@@ -28,6 +28,7 @@ php-cs-fixer -V
 mutt -v 
 which gcalcli
 pip -V
+which urlscan
 
 # check that directories exist
 ls $HOME/projects/apickli

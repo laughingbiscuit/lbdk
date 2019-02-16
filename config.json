@@ -29,7 +29,8 @@
         "openssh",
         "plantuml",
         "php",
-        "mutt"
+        "mutt",
+        "urlscan"
     ],
     "npm": [
         "npm",
