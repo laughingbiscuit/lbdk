@@ -30,7 +30,10 @@
         "plantuml",
         "php",
         "mutt",
-        "urlscan"
+        "urlscan",
+        "htop",
+        "bash-completion",
+        "calcurse"
     ],
     "npm": [
         "npm",
@@ -39,7 +42,8 @@
         "godaddy-dns",
         "http-server",
         "apigeetool",
-        "nodemon"
+        "nodemon",
+        "tldr"
     ],
     "git": [
         "seymen/accelerator-ci-maven",
