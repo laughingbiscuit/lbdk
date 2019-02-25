@@ -8,6 +8,8 @@ set -o xtrace
 set -e
 set -o pipefail 
 
+. ~/.bashrc
+
 # check tools are installed
 node -v
 curl -V
