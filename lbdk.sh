@@ -90,5 +90,12 @@ fi
 curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $LBDK_DIR/target/php-cs-fixer
 chmod +x $LBDK_DIR/target/php-cs-fixer
 
+# install gcloud sdk
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo apt-get update && sudo apt-get install google-cloud-sdk kubectl -y
+
 # set up locales
 sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
+

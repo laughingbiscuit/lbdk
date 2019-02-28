@@ -31,6 +31,8 @@ mutt -v
 which gcalcli
 pip -V
 which urlscan
+gcloud -v
+which kubectl
 
 # check that directories exist
 ls $HOME/projects/apickli
