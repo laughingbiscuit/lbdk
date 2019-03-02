@@ -57,6 +57,7 @@
         "w0rp/ale"
     ],
     "pip": [
-        "gcalcli"
+        "gcalcli",
+        "linode-cli"
     ]
 }
