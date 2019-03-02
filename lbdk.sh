@@ -60,8 +60,6 @@ for VIM_PLUGIN in $(jq -r '.vim | join(" ")' $LBDK_CONF) ; do
 	cd $PLUGIN_DIR && git clone --depth 1 https://github.com/$VIM_PLUGIN || true
 done
 
-# update pip
-sudo pip install --upgrade pip
 # setup pip modules
 for PIP_PKG in $(jq -r '.pip | join(" ")' $LBDK_CONF) ; do
 	sudo pip install $PIP_PKG || true
