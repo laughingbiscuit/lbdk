@@ -25,6 +25,7 @@ fi
 
 # create required dirs
 mkdir -p $LBDK_DIR/target
+mkdir -p ~/.vim/swapfiles
 
 # install some basic tools
 sudo apt-get update
