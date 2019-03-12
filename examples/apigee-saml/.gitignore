@@ -1,0 +1,10 @@
+ca-key.pem
+ca-crt.pem
+server-key.pem
+server-csr.pem
+server-crt.pem
+client1-key.pem
+client1-csr.pem
+client1-crt.pem
+ca-crt.srl
+certs/**
