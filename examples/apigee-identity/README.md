@@ -12,7 +12,7 @@ The main considerations for these examples are:
 ## Apigee Entities
 
 ``` txt
-
+                      |-------------|
                       | Developer   |
                       |-------------|
                       | email       |
@@ -20,6 +20,7 @@ The main considerations for these examples are:
                           1 |          \*
                             |           \1
                           * |        
+  |---------------|   |-------------|   |---------------|
   | Key + Secret  |---| Develop App |---| Company       | 
   |---------------|1 1|-------------|   |---------------|
                       | callback url|   | billing info  |
@@ -27,6 +28,7 @@ The main considerations for these examples are:
                           * |        * 1
                             |
                           * |        
+                      |-----------------|
                       | API Product     |
                       |-----------------|
                       | allowed scopes  |
@@ -36,6 +38,7 @@ The main considerations for these examples are:
                           * |       
                             |
                           * |        
+                      |-----------------|
                       | API Proxy       |
                       |-----------------|
                       | required scopes |
