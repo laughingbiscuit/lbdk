@@ -11,6 +11,8 @@ The main considerations for these examples are:
 
 ## Apigee Entities
 
+``` txt
+
                       | Developer   |
                       |-------------|
                       | email       |
@@ -38,7 +40,7 @@ The main considerations for these examples are:
                       |-----------------|
                       | required scopes |
                       |-----------------|
-              
+```          
 
 ## Identification - API Keys
 
