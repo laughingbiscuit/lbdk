@@ -47,7 +47,7 @@
     ],
     "git": [
         "seymen/accelerator-ci-maven",
-        "seymen/apicki-ff",
+        "seymen/apickli-ff",
         "apickli/apickli",
         "lastpass/lastpass-cli",
         "laughingbiscuit/apigee-reference-bank"
