@@ -33,7 +33,8 @@
         "urlscan",
         "htop",
         "bash-completion",
-        "calcurse"
+        "calcurse",
+        "nethack-console"
     ],
     "npm": [
         "npm",
