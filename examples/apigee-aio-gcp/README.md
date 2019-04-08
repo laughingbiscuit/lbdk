@@ -11,10 +11,10 @@ Requirements can be found [here](https://docs.apigee.com/private-cloud/v4.19.01/
 
 ```bash
 # create instance
-gcloud compute instances create aio --machine-type n1-standard-16 --zone europe-west1-b --image-project centos-cloud --image-family centos-7
+gcloud compute instances create aio --machine-type n1-standard-16 --image-project centos-cloud --image-family centos-7
 
 # try to access it
-gcloud compute ssh $GCLOUD_USER@aio
+# gcloud compute ssh $GCLOUD_USER@aio
 ```
 
 ## Update sources and install dependencies
