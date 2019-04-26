@@ -34,7 +34,7 @@ sudo apt-get install -y curl jq git cmake gnupg
 sudo apt-get install -y python-pip || true
 
 # install nodejs lts
-(curl -sSL https://deb.nodesource.com/setup_10.x | sudo bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
+(curl -sSL https://deb.nodesource.com/setup_12.x | sudo bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
 
 # install apt packages
 for APT_PKG in $(jq -r '.apt | join(" ")' $LBDK_CONF) ; do
