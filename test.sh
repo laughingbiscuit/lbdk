@@ -34,6 +34,7 @@ which urlscan
 gcloud -v
 which kubectl
 go version
+terraform version
 
 # check that directories exist
 ls $HOME/projects/apickli
