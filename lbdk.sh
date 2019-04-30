@@ -97,6 +97,11 @@ echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update && sudo apt-get install google-cloud-sdk kubectl -y
 
+# install go
+curl https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz -o /tmp/go.tar.gz
+tar -C /usr/local -xzf /tmp/go.tar.gz
+
+
 # set up locales
 sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
 

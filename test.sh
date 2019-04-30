@@ -33,6 +33,7 @@ pip -V
 which urlscan
 gcloud -v
 which kubectl
+go version
 
 # check that directories exist
 ls $HOME/projects/apickli
