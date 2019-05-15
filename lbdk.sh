@@ -80,6 +80,7 @@ fi
 
 # build tools from source
 ## lastpass
+mkdir -p ~/.local/share
 (cd $HOME/projects/lastpass-cli && make && sudo make install) || true
 
 # add x and some simple tools
@@ -99,13 +100,12 @@ sudo apt-get update && sudo apt-get install google-cloud-sdk kubectl -y
 
 # install go
 curl https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz -o /tmp/go.tar.gz
-tar -C /usr/local -xzf /tmp/go.tar.gz || true
-
+sudo tar -C /usr/local -xzf /tmp/go.tar.gz || true
 
 # install terraform
 curl https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip -o /tmp/terraform.zip
-unzip -d /usr/local/bin /tmp/terraform.zip || true
+sudo unzip -d /usr/local/bin /tmp/terraform.zip || true
 
 # set up locales
-sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && locale-gen || true
+sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && sudo locale-gen || true
 
