@@ -109,3 +109,9 @@ sudo unzip -d /usr/local/bin /tmp/terraform.zip || true
 # set up locales
 sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && sudo locale-gen || true
 
+if echo $ARGS | grep 'games' -q  ; then
+  mkdir -p ~/games
+  # install dwarf fortress
+  curl -L http://www.bay12games.com/dwarves/df_44_12_linux.tar.bz2 -o /tmp/df.tar.bz2
+  tar -C ~/games -xvf /tmp/df.tar.bz2
+fi
