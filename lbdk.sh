@@ -3,9 +3,9 @@
 # Laughing Biscuit Development Kit
 #
 #	Description: A scrappy idempotent script to setup my Development Environment
-#	Requirements: Termux or Debian Stretch
-#	Usage: ./lbdk.sh [--sudo] [--ui]
-#	Repo: https://github.com/laughingbiscuit/development-kit.git
+#	Requirements: Debian Stretch
+#	Usage: ./lbdk.sh [sudo] [ui] [games]
+#	Repo: https://github.com/laughingbiscuit/lbdk.git
 #	Author: LaughingBiscuit
 
 set -o xtrace
@@ -114,4 +114,7 @@ if echo $ARGS | grep 'games' -q  ; then
   # install dwarf fortress
   curl -L http://www.bay12games.com/dwarves/df_44_12_linux.tar.bz2 -o /tmp/df.tar.bz2
   tar -C ~/games -xvf /tmp/df.tar.bz2
+
+  # install mud
+  sudo apt-get install -y tintin++
 fi

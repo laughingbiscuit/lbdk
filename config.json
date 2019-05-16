@@ -55,7 +55,8 @@
     ],
     "vim": [
         "sbdchd/neoformat",
-        "w0rp/ale"
+        "w0rp/ale",
+        "gyim/vim-boxdraw"
     ],
     "pip": [
         "gcalcli",
