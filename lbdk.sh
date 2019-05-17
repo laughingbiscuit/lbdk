@@ -123,7 +123,6 @@ done
 # vim plugins
 #####
 
-PLUGIN_DIR=~/.vim/pack/git-plugins/start/
 PLUGINS=$(cat <<-END
   sbdchd/neoformat
   w0rp/ale
@@ -134,7 +133,8 @@ END
 
 for REPO in $PLUGINS; do
   DIR=$(echo $REPO | cut -d "/" -f 2)
-	git clone --depth 1 https://github.com/$REPO $PLUGINDIR.$DIR || true
+	git clone --depth 1 https://github.com/$REPO \
+    ~/.vim/pack/git-plugins/start/$DIR || true
 done
 
 #####
