@@ -7,7 +7,6 @@
 #	Usage: ./lbdk.sh [sudo] [ui] [games]
 #	Repo: https://github.com/laughingbiscuit/lbdk.git
 #	Author: LaughingBiscuit
-
 set -o xtrace
 set -e
 set -o pipefail 
@@ -15,6 +14,7 @@ set -o pipefail
 LBDK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LBDK_CONF="$LBDK_DIR/config.json"
 ARGS="$@"
+LSB_RELEASE="stretch"
 
 # stub sudo if no argument is provided
 if ! echo $ARGS | grep 'sudo' -q  ; then
@@ -23,98 +23,198 @@ if ! echo $ARGS | grep 'sudo' -q  ; then
 	}
 fi
 
-# create required dirs
-mkdir -p $LBDK_DIR/target
-mkdir -p ~/.vim/swapfiles
 
-# install some basic tools
+#####
+# mkdirs
+#####
+
+mkdir -p ~/.vim/swapfiles
+mkdir -p ~/.npm-global
+mkdir -p ~/projects
+mkdir -p ~/.vim/pack/git-plugins/start
+mkdir -p ~/.local/share
+
+
+#####
+# prereqs
+#####
+sudo apt-get update && sudo apt-get install -y curl gnupg apt-transport-https
+
+#####
+# apts
+#####
+
+echo "deb https://deb.nodesource.com/node_12.x $LSB_RELEASE main"|\
+  sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb http://packages.cloud.google.com/apt cloud-sdk-$LSB_RELEASE main" |\
+  sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
+
+curl -sSL "https://deb.nodesource.com/gpgkey/nodesource.gpg.key" |\
+  sudo apt-key add -
+curl -sSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" |\
+  sudo apt-key add -
+
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y curl jq git cmake gnupg
-sudo apt-get install -y python-pip || true
+sudo apt-get install -y \
+  apache2-utils \
+  bash-completion \
+  build-essential \
+  ca-certificates \
+  calcurse \
+  cmake  \
+  ctags \
+  git  \
+  google-cloud-sdk \
+  htop \
+  jq  \
+  kubectl \
+  libcurl3 \
+  libcurl4-openssl-dev \
+  libssl1.0 \
+  libssl1.0-dev \
+  libxml2 \
+  libxml2-dev \
+  libxml2-dev \
+  man \
+  maven \
+  mutt \
+  nodejs \
+  openjdk-8-jdk-headless \
+  php \
+  pkg-config \
+  plantuml \
+  python-pip \
+  ranger \
+  taskwarrior \
+  tmux \
+  urlscan \
+  vim 
 
-# install nodejs lts
-(curl -sSL https://deb.nodesource.com/setup_12.x | sudo bash && sudo apt-get install -y nodejs) || sudo apt-get install -y nodejs-lts 
+#####
+# npm
+#####
 
-# install apt packages
-for APT_PKG in $(jq -r '.apt | join(" ")' $LBDK_CONF) ; do
-	sudo apt-get install -y $APT_PKG || true
-done
-
-# install npm packages
-mkdir -p $HOME/.npm-global
 npm config set prefix $HOME/.npm-global
-for NPM_PKG in $(jq -r '.npm | join(" ")' $LBDK_CONF) ; do
-	sudo npm install -g $NPM_PKG || true
+sudo npm install -g \
+  apigeetool \
+  eslint \
+  godaddy-dns \
+  http-server \
+  js-beautify \
+  nodemon \
+  npm \
+  tldr
+
+#####
+# git
+#####
+
+REPOS=$(cat <<-END
+  seymen/accelerator-ci-maven
+  seymen/apickli-ff
+  apickli/apickli
+  lastpass/lastpass-cli
+  laughingbiscuit/apigee-reference-bank
+END
+)
+for REPO in $REPOS; do
+  DIR=$(echo $REPO | cut -d "/" -f 2)
+	git clone --depth 1 https://github.com/$REPO ~/projects/$DIR || true
 done
 
-# pull git repos
-mkdir -p $HOME/projects
-for GIT_REPO in $(jq -r '.git | join(" ")' $LBDK_CONF) ; do
-	cd $HOME/projects && git clone --depth 1 https://github.com/$GIT_REPO || true
+#####
+# vim plugins
+#####
+
+PLUGIN_DIR=~/.vim/pack/git-plugins/start/
+PLUGINS=$(cat <<-END
+  sbdchd/neoformat
+  w0rp/ale
+  gyim/vim-boxdraw
+
+END
+)
+
+for REPO in $PLUGINS; do
+  DIR=$(echo $REPO | cut -d "/" -f 2)
+	git clone --depth 1 https://github.com/$REPO $PLUGINDIR.$DIR || true
 done
 
-# setup vim plugins
-PLUGIN_DIR=$HOME/.vim/pack/git-plugins/start
-mkdir -p $PLUGIN_DIR
-for VIM_PLUGIN in $(jq -r '.vim | join(" ")' $LBDK_CONF) ; do
-	cd $PLUGIN_DIR && git clone --depth 1 https://github.com/$VIM_PLUGIN || true
-done
+#####
+# pip plugins
+#####
 
-# setup pip modules
-for PIP_PKG in $(jq -r '.pip | join(" ")' $LBDK_CONF) ; do
-	sudo pip install $PIP_PKG || true
-done
+sudo pip install \
+  gcalcli \
+  linode-cli
 
-# setup dotfiles
+#####
+# dotfiles
+#####
+
 if [ ! -d ~/.dotfiles ]; then
-	# move previous bashrc
 	[ -f ~/.bashrc ] && mv ~/.bashrc ~/.bashrc.old
-
-	# Clone our dotfiles
 	git clone --bare https://github.com/laughingbiscuit/dotfiles.git ~/.dotfiles
 	git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
 else
 	git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME pull || true
 fi
 
-# build tools from source
-## lastpass
-mkdir -p ~/.local/share
-(cd $HOME/projects/lastpass-cli && make && sudo make install) || true
+#####
+# build source
+#####
 
-# add x and some simple tools
+git -C ~/projects/lastpass-cli pull
+make -C ~/projects/lastpass-cli
+sudo make install -C ~/projects/lastpass-cli
+
+#####
+# UI Tools
+#####
+ 
 if echo $ARGS | grep 'ui' -q  ; then
-	sudo apt-get install -y xinit i3 arandr firefox-esr xfce4-terminal feh compton wicd wicd-curses xclip alsa-utils
+	sudo apt-get install -y \
+    alsa-utils \
+    arandr \
+    compton \
+    feh \
+    firefox-esr \
+    i3 \
+    wicd \
+    wicd-curses \
+    xclip \
+    xfce4-terminal \
+    xinit 
 fi
 
-# install php formatter (package managers are lacking...)
-curl https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $LBDK_DIR/target/php-cs-fixer
-chmod +x $LBDK_DIR/target/php-cs-fixer
+#####
+# PHP
+#####
 
-# install gcloud sdk
-export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-sudo apt-get update && sudo apt-get install google-cloud-sdk kubectl -y
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
 
-# install go
+composer global require \
+  friendsofphp/php-cs-fixer
+
+#####
+# Binaries
+#####
+
 curl https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz -o /tmp/go.tar.gz
-sudo tar -C /usr/local -xzf /tmp/go.tar.gz || true
+sudo tar -C /usr/local -xzf /tmp/go.tar.gz
 
-# install terraform
-curl https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip -o /tmp/terraform.zip
-sudo unzip -d /usr/local/bin /tmp/terraform.zip || true
+curl -o /tmp/terraform.zip \
+  https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
+sudo unzip -d /usr/local/bin /tmp/terraform.zip
 
-# set up locales
-sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen || sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen && sudo apt-get install -y locales && sudo locale-gen || true
+#####
+# Locale
+#####
 
-if echo $ARGS | grep 'games' -q  ; then
-  mkdir -p ~/games
-  # install dwarf fortress
-  curl -L http://www.bay12games.com/dwarves/df_44_12_linux.tar.bz2 -o /tmp/df.tar.bz2
-  tar -C ~/games -xvf /tmp/df.tar.bz2
+sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen ||\ 
+  sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen &&\
+  sudo apt-get install -y locales && sudo locale-gen || true
 
-  # install mud
-  sudo apt-get install -y tintin++
-fi
