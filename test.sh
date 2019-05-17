@@ -46,5 +46,5 @@ ls $HOME/.dotfiles
 # check that games work
 source ~/lbdk/scripts/lbdk-games.sh
 ls $HOME/games/df_linux
-which nethack
+[ -f /usr/games/nethack ]
 
