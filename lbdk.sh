@@ -8,7 +8,6 @@ LSB_RELEASE="stretch"
 #	Usage: ./lbdk.sh [sudo] [ui] 
 #	Repo: https://github.com/laughingbiscuit/lbdk.git
 #	Author: LaughingBiscuit
-
 set -o xtrace
 set -e
 set -o pipefail 
@@ -33,6 +32,7 @@ mkdir -p ~/.local/share
 #####
 # prereqs
 #####
+
 sudo apt-get update && sudo apt-get install -y curl gnupg apt-transport-https
 
 #####

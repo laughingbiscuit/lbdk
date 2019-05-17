@@ -1,0 +1,17 @@
+{
+    "apt": [
+    ],
+    "npm": [
+    ],
+    "git": [
+    ],
+    "vim": [
+        "sbdchd/neoformat",
+        "w0rp/ale",
+        "gyim/vim-boxdraw"
+    ],
+    "pip": [
+        "gcalcli",
+        "linode-cli"
+    ]
+}
