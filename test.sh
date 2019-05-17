@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Some simple smoke tests
+# Some simple smoke tests - for each command I need a 0 exit code
 #
 
 set -o xtrace
@@ -42,3 +42,9 @@ ls $HOME/projects/accelerator-ci-maven
 ls $HOME/.vim/pack/git-plugins/start/ale
 ls $HOME/.vim/pack/git-plugins/start/neoformat
 ls $HOME/.dotfiles
+
+# check that games work
+source ~/lbdk/scripts/lbdk-games.sh
+ls $HOME/games/df_linux
+which nethack
+
