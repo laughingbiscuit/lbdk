@@ -112,6 +112,7 @@ REPOS=$(cat <<-END
   apickli/apickli
   lastpass/lastpass-cli
   laughingbiscuit/apigee-reference-bank
+  jlevy/the-art-of-command-line
 END
 )
 for REPO in $REPOS; do
