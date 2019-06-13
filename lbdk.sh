@@ -215,7 +215,7 @@ else
   curl -o /tmp/terraform.zip \
     https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
 fi
-sudo unzip -f -d /usr/local/bin /tmp/terraform.zip
+sudo unzip -d /usr/local/bin /tmp/terraform.zip
 
 #####
 # Locale
