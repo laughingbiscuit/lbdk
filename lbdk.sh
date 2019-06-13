@@ -176,7 +176,7 @@ if echo $@ | grep 'ui' -q  ; then
     arandr \
     compton \
     feh \
-    firefox-esr \
+    chromium-browser \
     i3 \
     wicd \
     wicd-curses \
