@@ -70,7 +70,7 @@ sudo apt-get install -y \
   libssl1.0-dev \
   libxml2 \
   libxml2-dev \
-  libxml2-dev \
+  lynx \
   man \
   maven \
   mutt \
@@ -170,19 +170,20 @@ sudo make install -C ~/projects/lastpass-cli
 # UI Tools
 #####
  
-if echo $ARGS | grep 'ui' -q  ; then
+if echo $@ | grep 'ui' -q  ; then
 	sudo apt-get install -y \
     alsa-utils \
     arandr \
     compton \
     feh \
-    firefox-esr \
+    chromium-browser \
     i3 \
     wicd \
     wicd-curses \
     xclip \
     xfce4-terminal \
-    xinit 
+    xinit \
+    kdenlive
 fi
 
 #####
@@ -190,7 +191,7 @@ fi
 #####
 
 curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+sudo mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
 
 composer global require \
@@ -200,11 +201,20 @@ composer global require \
 # Binaries
 #####
 
-curl https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz -o /tmp/go.tar.gz
-sudo tar -C /usr/local -xzf /tmp/go.tar.gz
+if uname -m | grep 'arm' -q  ; then
+  curl https://dl.google.com/go/go1.12.6.linux-armv6l.tar.gz -o /tmp/go.tar.gz
+else
+  curl https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz -o /tmp/go.tar.gz
+fi
+sudo tar --overwrite -C /usr/local -xzf /tmp/go.tar.gz
 
-curl -o /tmp/terraform.zip \
-  https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
+if uname -m | grep 'arm' -q  ; then
+  curl -o /tmp/terraform.zip \
+    https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_arm.zip
+else
+  curl -o /tmp/terraform.zip \
+    https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
+fi
 sudo unzip -d /usr/local/bin /tmp/terraform.zip
 
 #####

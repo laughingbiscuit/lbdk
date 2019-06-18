@@ -43,8 +43,3 @@ ls $HOME/.vim/pack/git-plugins/start/ale
 ls $HOME/.vim/pack/git-plugins/start/neoformat
 ls $HOME/.dotfiles
 
-# check that games work
-source ~/lbdk/scripts/lbdk-games.sh
-ls $HOME/games/df_linux
-[ -f /usr/games/nethack ]
-
