@@ -27,8 +27,8 @@ https://remotedesktop.corp.google.com/headless
 
 Copy the command shown after consenting into an SSH window
 ```
-gcloud compute ssh $GCLOUD_USER@rdp
-<PASTE>
+#gcloud compute ssh $GCLOUD_USER@rdp
+#<PASTE>
 
 ```
 __Job done__
