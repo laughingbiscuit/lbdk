@@ -178,8 +178,6 @@ if echo $@ | grep 'ui' -q  ; then
     feh \
     chromium-browser \
     i3 \
-    wicd \
-    wicd-curses \
     xclip \
     xfce4-terminal \
     xinit \
