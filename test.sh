@@ -35,6 +35,8 @@ gcloud -v
 which kubectl
 go version
 terraform version
+ruby -v
+gem -v
 
 # check that directories exist
 ls $HOME/projects/apickli

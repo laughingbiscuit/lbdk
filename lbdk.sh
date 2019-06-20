@@ -81,6 +81,7 @@ sudo apt-get install -y \
   plantuml \
   python-pip \
   ranger \
+  ruby-full \
   taskwarrior \
   tmux \
   unzip \
