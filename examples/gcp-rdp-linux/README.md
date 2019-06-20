@@ -16,8 +16,8 @@ gcloud compute ssh $GCLOUD_USER@rdp --command "wget https://dl.google.com/linux/
 gcloud compute ssh $GCLOUD_USER@rdp --command "sudo apt-get update && sudo dpkg --install chrome-remote-desktop_current_amd64.deb"
 gcloud compute ssh $GCLOUD_USER@rdp --command "sudo apt install --assume-yes --fix-broken"
 
-# install x, a window manager (i3), a terminal and browser
-gcloud compute ssh $GCLOUD_USER@rdp --command "sudo apt-get install -y xinit i3 xfce4-terminal chromium git"
+# install x, a desktop environment, a terminal and browser
+gcloud compute ssh $GCLOUD_USER@rdp --command "sudo DEBIAN_FRONTEND=noninteractive apt-get install -y xinit lxde chromium git lxde"
 ```
 
 Navigate to the following in browser for oauth consent
@@ -32,9 +32,4 @@ gcloud compute ssh $GCLOUD_USER@rdp
 
 ```
 __Job done__
-
-Bonus: set up dev environment
-```
-gcloud compute ssh $GCLOUD_USER@rdp --command "git clone https://github.com/laughingbiscuit/lbdk && ./lbdk/lbdk.sh sudo"
-```
 
