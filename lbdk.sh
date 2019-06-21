@@ -181,8 +181,8 @@ if echo $@ | grep 'ui' -q  ; then
     i3 \
     xclip \
     xfce4-terminal \
-    xinit \
-    kdenlive
+    xinit
+#   kdenlive - only needed for video editing
 fi
 
 #####
