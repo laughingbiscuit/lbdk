@@ -177,12 +177,18 @@ if echo $@ | grep 'ui' -q  ; then
     arandr \
     compton \
     feh \
-    chromium-browser \
+    chromium \
     i3 \
     xclip \
     xfce4-terminal \
     xinit
 #   kdenlive - only needed for video editing
+
+  if uname -m | grep 'arm' -q  ; then
+    sudo apt-get install -y chromium-browser
+  else
+    sudo apt-get install -y chromium
+  fi
 fi
 
 #####
