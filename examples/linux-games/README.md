@@ -16,8 +16,9 @@ git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -- ~/games/df_linux/
 Install OSRS
 ```
 mkdir -p ~/.jagex/runescape/bin
-curl https://github.com/MrHDR/RaspberryPi/raw/master/Rsinstall/jagexappletviewer.jar
+mkdir -p ~/.jagex/runescape/images
+curl -L https://github.com/MrHDR/RaspberryPi/raw/master/Rsinstall/jagexappletviewer.jar -o ~/.jagex/runescape/bin/jagexappletviewer.jar
 
 # to run
-java -Xmx1024m -Djava.class.path=~/.jagex/runescape/bin/jagexappletviewer.jar -Dcom.jagex.config="http://oldschool.runescape.com/jav_config.ws" jagexappletviewer
+java -Xmx1024m -Djava.class.path=$HOME/.jagex/runescape/bin/jagexappletviewer.jar -Dcom.jagex.config="http://oldschool.runescape.com/jav_config.ws" jagexappletviewer $HOME/.jagex/runescape/images
 ```
