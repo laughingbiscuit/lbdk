@@ -37,7 +37,7 @@ go version
 terraform version
 ruby -v
 gem -v
-travis -v
+which travis
 
 # check that directories exist
 ls $HOME/projects/apickli
