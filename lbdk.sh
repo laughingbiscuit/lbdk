@@ -203,6 +203,13 @@ composer global require \
   friendsofphp/php-cs-fixer
 
 #####
+# Ruby Gems
+#####
+
+sudo gem install travis
+echo "y" | travis
+
+#####
 # Binaries
 #####
 
