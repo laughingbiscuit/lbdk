@@ -38,6 +38,7 @@ terraform version
 ruby -v
 gem -v
 which travis
+jwt -v
 
 # check that directories exist
 ls $HOME/projects/apickli

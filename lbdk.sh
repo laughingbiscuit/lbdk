@@ -101,6 +101,7 @@ sudo npm install -g \
   js-beautify \
   nodemon \
   npm \
+  jwt-cli \
   tldr
 
 #####
