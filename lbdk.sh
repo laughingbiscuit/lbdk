@@ -62,6 +62,7 @@ sudo apt-get install -y \
   git  \
   google-cloud-sdk \
   htop \
+  iputils-ping \
   jq  \
   kubectl \
   libcurl3 \

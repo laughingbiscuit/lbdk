@@ -37,8 +37,10 @@ go version
 terraform version
 ruby -v
 gem -v
+echo "y" | travis
 which travis
 jwt -v
+ping -V
 
 # check that directories exist
 ls $HOME/projects/apickli
