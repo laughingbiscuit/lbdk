@@ -41,6 +41,7 @@ echo "y" | travis
 which travis
 jwt -v
 ping -V
+claat version
 
 # check that directories exist
 ls $HOME/projects/apickli

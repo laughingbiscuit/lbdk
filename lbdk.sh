@@ -231,6 +231,14 @@ else
 fi
 sudo unzip -o -d /usr/local/bin /tmp/terraform.zip
 
+if uname -m | grep 'arm' -q  ; then
+  echo "No codelabs for arm"
+else
+  sudo curl -L https://github.com/googlecodelabs/tools/releases/download/v2.2.0/claat-linux-amd64 -o /usr/local/bin/claat
+  chmod +x /usr/local/bin/claat
+fi
+
+
 #####
 # Locale
 #####
