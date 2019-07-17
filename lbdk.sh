@@ -198,6 +198,7 @@ fi
 #####
 if echo $@ | grep 'docker' -q  ; then
   curl -sSL https://get.docker.com | sh
+  sudo usermod -aG docker $USER || true
 fi
 
 #####
