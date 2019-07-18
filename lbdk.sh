@@ -193,6 +193,14 @@ if echo $@ | grep 'ui' -q  ; then
 fi
 
 #####
+# Docker
+#####
+if echo $@ | grep 'docker' -q  ; then
+  curl -sSL https://get.docker.com | sh
+  sudo usermod -aG docker $USER || true
+fi
+
+#####
 # PHP
 #####
 
@@ -234,7 +242,7 @@ if uname -m | grep 'arm' -q  ; then
   echo "No codelabs for arm"
 else
   sudo curl -L https://github.com/googlecodelabs/tools/releases/download/v2.2.0/claat-linux-amd64 -o /usr/local/bin/claat
-  chmod +x /usr/local/bin/claat
+  sudo chmod +x /usr/local/bin/claat
 fi
 
 
