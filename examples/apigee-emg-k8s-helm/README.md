@@ -17,6 +17,8 @@ kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-po
 https://medium.com/@pablorsk/kubernetes-helm-node-hello-world-c97d20437abd
 ```
 helm init
+docker build -t hello .
+docker run -p 8005:8005
 ```
 
 ## Inspect and Test
