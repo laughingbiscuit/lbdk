@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 
 WORKDIR /root
 COPY . /root/lbdk

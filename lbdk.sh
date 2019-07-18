@@ -59,6 +59,7 @@ sudo apt-get install -y \
   calcurse \
   cmake  \
   ctags \
+  figlet \
   git  \
   google-cloud-sdk \
   htop \
@@ -75,7 +76,7 @@ sudo apt-get install -y \
   maven \
   mutt \
   nodejs \
-  openjdk-8-jdk-headless \
+  openjdk-11-jdk-headless \
   php \
   pkg-config \
   plantuml \
