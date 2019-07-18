@@ -230,7 +230,6 @@ if uname -m | grep 'arm' -q  ; then
   curl https://get.helm.sh/helm-v2.14.2-linux-arm.tar.gz -o /tmp/helm.tar.gz
   tar --overwrite -C /tmp -xzf /tmp/helm.tar.gz
   sudo mv /tmp/linux-arm/helm /usr/local/bin
-  sudo mv /tmp/linux-arm/tiller /usr/local/bin
 else
   curl https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz -o /tmp/go.tar.gz
   curl -o /tmp/terraform.zip \
@@ -240,7 +239,6 @@ else
   curl https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz -o /tmp/helm.tar.gz
   tar --overwrite -C /tmp -xzf /tmp/helm.tar.gz
   sudo mv /tmp/linux-amd64/helm /usr/local/bin
-  sudo mv /tmp/linux-amd64/tiller /usr/local/bin
 fi
 sudo tar --overwrite -C /usr/local -xzf /tmp/go.tar.gz
 sudo unzip -o -d /usr/local/bin /tmp/terraform.zip

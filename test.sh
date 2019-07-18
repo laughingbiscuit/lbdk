@@ -43,7 +43,6 @@ jwt -v
 ping -V
 claat version
 which helm
-which teller
 
 # check that directories exist
 ls $HOME/projects/apickli
