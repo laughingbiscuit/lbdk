@@ -59,6 +59,7 @@ sudo apt-get install -y \
   calcurse \
   cmake  \
   ctags \
+  figlet \
   git  \
   google-cloud-sdk \
   htop \
