@@ -224,27 +224,26 @@ echo "y" | travis
 
 if uname -m | grep 'arm' -q  ; then
   curl https://dl.google.com/go/go1.12.6.linux-armv6l.tar.gz -o /tmp/go.tar.gz
-else
-  curl https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz -o /tmp/go.tar.gz
-fi
-sudo tar --overwrite -C /usr/local -xzf /tmp/go.tar.gz
-
-if uname -m | grep 'arm' -q  ; then
   curl -o /tmp/terraform.zip \
     https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_arm.zip
+  echo "No codelabs for arm"
+  curl https://get.helm.sh/helm-v2.14.2-linux-arm.tar.gz -o /tmp/helm.tar.gz
+  tar --overwrite -C /tmp -xzf /tmp/helm.tar.gz
+  sudo mv /tmp/linux-arm/helm /usr/local/bin
+  sudo mv /tmp/linux-arm/tiller /usr/local/bin
 else
+  curl https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz -o /tmp/go.tar.gz
   curl -o /tmp/terraform.zip \
     https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
-fi
-sudo unzip -o -d /usr/local/bin /tmp/terraform.zip
-
-if uname -m | grep 'arm' -q  ; then
-  echo "No codelabs for arm"
-else
   sudo curl -L https://github.com/googlecodelabs/tools/releases/download/v2.2.0/claat-linux-amd64 -o /usr/local/bin/claat
   sudo chmod +x /usr/local/bin/claat
+  curl https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz -o /tmp/helm.tar.gz
+  tar --overwrite -C /tmp -xzf /tmp/helm.tar.gz
+  sudo mv /tmp/linux-amd64/helm /usr/local/bin
+  sudo mv /tmp/linux-amd64/tiller /usr/local/bin
 fi
-
+sudo tar --overwrite -C /usr/local -xzf /tmp/go.tar.gz
+sudo unzip -o -d /usr/local/bin /tmp/terraform.zip
 
 #####
 # Locale
