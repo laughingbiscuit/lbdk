@@ -65,10 +65,9 @@ sudo apt-get install -y \
   iputils-ping \
   jq  \
   kubectl \
-  libcurl3 \
+  libcurl4 \
   libcurl4-openssl-dev \
-  libssl1.0 \
-  libssl1.0-dev \
+  libssl-dev \
   libxml2 \
   libxml2-dev \
   lynx \
