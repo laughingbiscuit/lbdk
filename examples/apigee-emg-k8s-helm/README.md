@@ -61,7 +61,8 @@ apigeetool createApp -u $APIGEE_USER -p $APIGEE_PASS -o $APIGEE_ORG --apiProduct
 
 ## Package Helm Chat
 
-First, edit the properies in values.yml that are prefix with `emg`
+  First, edit the properies in values.yml that are prefix with `emg`. The key and secret are in `output.txt` from earlier. emgConfig is the base64 encoding contents of `$HOME/.edgemicro/{org}-{env}-config.yaml`.
+
 
 Then package it up:
 
@@ -77,10 +78,12 @@ helm install emg-chart-0.1.0.tgz --name emg-helm
 
 ## Test
 
+You can get the API Key from the "My App" developer app in Apigee
+
 ```
 export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=emg-chart,app.kubernetes.io/instance=emg-helm" -o jsonpath="{.items[0].metadata.name}")
 kubectl port-forward $POD_NAME 8080:8000 &
-curl http://localhost:8080/edgemicro_helm/get
+curl http://localhost:8080/edgemicro_helm/get -H "x-api-key: [apikey]"
 
 ```
 
@@ -92,10 +95,6 @@ gcloud container clusters delete emg-demo
 
 ## Future Enhancements
 
-```
+- Pass secrets at environment variables, rather than hardcoded in values.yml. This way we can leverage a vault to store these secrets
+- Store the $HOME/.edgemicro/{org}-{env}-config.yaml file in a ConfigMap instead of passing it as an environment variable.
 
-```
-
-
-Reference:
-https://medium.com/@pablorsk/kubernetes-helm-node-hello-world-c97d20437abd
