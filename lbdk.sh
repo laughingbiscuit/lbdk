@@ -74,6 +74,7 @@ sudo apt-get install -y \
   lynx \
   man \
   maven \
+  mdp \
   mutt \
   nodejs \
   openjdk-11-jdk-headless \
