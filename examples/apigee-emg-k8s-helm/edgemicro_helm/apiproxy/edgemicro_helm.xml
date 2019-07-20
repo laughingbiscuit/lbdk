@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="edgemicro_helm">
+    <Basepaths>/edgemicro_helm</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1563528765811</CreatedAt>
+    <CreatedBy>davissean@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>edgemicro_helm</DisplayName>
+    <LastModifiedAt>1563528765811</LastModifiedAt>
+    <LastModifiedBy>davissean@google.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:6d75f8045ec50b2fce46be70ce05ad1be2b74f6610286c7219305d0f740d4359f73eb2045c1bd4424343cc5993eb0ee27c97beada8312410ca27e0b8f0b31df9</ManifestVersion>
+    <Policies/>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

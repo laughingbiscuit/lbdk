@@ -1,13 +1,20 @@
-# Default values for hello-chart.
+# Default values for blah.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
+  repository: gcr.io/apigee-microgateway/edgemicro
+  tag: latest
   pullPolicy: IfNotPresent
+  emgProcesses: "1"
+  emgOrg: "my-org"
+  emgEnv: "my-env"
+  emgKey: "edgemicro-key"
+  emgSecret: "edgemicro-secret"
+  emgServiceName: "edgemicro"
+  emgConfig: "base64 encoded config"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -15,7 +22,12 @@ fullnameOverride: ""
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8000
+#service:
+#  name: emg-helm
+#  type: LoadBalancer
+#  externalPort: 80
+#  internalPort: 8000
 
 ingress:
   enabled: false
