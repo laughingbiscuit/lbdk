@@ -85,6 +85,7 @@ sudo apt-get install -y \
   ranger \
   ruby-full \
   taskwarrior \
+  tintin++ \
   tmux \
   unzip \
   urlscan \
