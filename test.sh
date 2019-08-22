@@ -44,7 +44,6 @@ ping -V
 claat version || echo "let this slide, maybe we are on arm"
 which helm
 which figlet
-which tt++
 
 # check that directories exist
 ls $HOME/projects/apickli
