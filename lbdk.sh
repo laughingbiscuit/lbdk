@@ -250,7 +250,7 @@ sudo unzip -o -d /usr/local/bin /tmp/terraform.zip
 # Locale
 #####
 
-sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen ||\ 
+sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen ||\
   sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen &&\
   sudo apt-get install -y locales && sudo locale-gen || true
 
