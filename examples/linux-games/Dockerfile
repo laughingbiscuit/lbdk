@@ -13,4 +13,4 @@ RUN rm /root/games/df_linux/libs/libstdc++.so.6
 RUN curl -sSLO https://github.com/DFHack/dfhack/releases/download/0.44.12-r2/dfhack-0.44.12-r2-Linux-64-gcc-7.tar.bz2 
 RUN tar -xvjf dfhack-0.44.12-r2-Linux-64-gcc-7.tar.bz2 -C /root/games/df_linux
 
-CMD bash
+CMD bash /root/games/df_linux/dfhack

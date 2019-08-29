@@ -7,7 +7,7 @@ sudo apt-get install -y nethack-console
 
 Install Dwarf Fortress (must be on a decent machine, and not on ARM)
 ```
-sudo apt-get install -y libsdl1.2-dev libsdl-image1.2-dev libsdl-ttf2.0-dev
+sudo apt-get install -y libsdl1.2-dev libsdl-image1.2-dev libsdl-ttf2.0-dev curl
 mkdir -p ~/games
 curl -sSL http://www.bay12games.com/dwarves/df_44_12_linux.tar.bz2 | tar -xvj -C ~/games
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -- ~/games/df_linux/
