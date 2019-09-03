@@ -16,6 +16,9 @@ const deploy = (specPath) => {
       user: program.username,
       pass: program.password
     },
+    qs: {
+      _format: 'json'
+    },
     json: JSON.parse(fs.readFileSync(specPath))
   }, (e, res, body) => {
     if(e) console.log(e)
