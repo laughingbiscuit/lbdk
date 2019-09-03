@@ -3,7 +3,7 @@ set -e
 set -o pipefail
 
 USER=$(lpass show -u Github)
-PASS=$(lpass show -p Github)
+PASS=$(lpass show --notes Github | grep 'pat:' | sed 's/pat://')
 
 if echo $@ | grep 'dot' -q ; then
 	# use bare repo for dotfiles and always push to master 
