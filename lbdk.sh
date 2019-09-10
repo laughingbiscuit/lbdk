@@ -66,7 +66,6 @@ sudo apt-get install -y \
   iputils-ping \
   jq  \
   kubectl \
-  libcurl4 \
   libcurl4-openssl-dev \
   libssl-dev \
   libxml2 \
