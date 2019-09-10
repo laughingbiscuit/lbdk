@@ -158,7 +158,7 @@ sudo pip install \
 if [ ! -d ~/.dotfiles ]; then
 	[ -f ~/.bashrc ] && mv ~/.bashrc ~/.bashrc.old
 	git clone --bare https://github.com/laughingbiscuit/dotfiles.git ~/.dotfiles
-	git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
+	git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout --ours
 else
 	git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME pull || true
 fi
