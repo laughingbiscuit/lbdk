@@ -3,8 +3,8 @@
 # Laughing Biscuit Development Kit
 #
 #	Description: A scrappy idempotent script to setup my Development Environment
-#	Requirements: Debian Stretch
-LSB_RELEASE="stretch"
+#	Requirements: Debian Buster
+LSB_RELEASE="buster"
 #	Usage: ./lbdk.sh [sudo] [ui] 
 #	Repo: https://github.com/laughingbiscuit/lbdk.git
 #	Author: LaughingBiscuit
@@ -66,7 +66,6 @@ sudo apt-get install -y \
   iputils-ping \
   jq  \
   kubectl \
-  libcurl4 \
   libcurl4-openssl-dev \
   libssl-dev \
   libxml2 \
