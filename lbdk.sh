@@ -116,7 +116,7 @@ REPOS=$(cat <<-END
   seymen/apickli-ff
   apickli/apickli
   lastpass/lastpass-cli
-  laughingbiscuit/apigee-reference-bank
+  apigee/apigee-reference-bank
   laughingbiscuit/docker-apigee-drupal-kickstart
   jlevy/the-art-of-command-line
 END
