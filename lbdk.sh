@@ -3,8 +3,8 @@
 # Laughing Biscuit Development Kit
 #
 #	Description: A scrappy idempotent script to setup my Development Environment
-#	Requirements: Debian Buster
-LSB_RELEASE="buster"
+#	Requirements: Alpine Linux
+
 #	Usage: ./lbdk.sh [sudo] [ui] 
 #	Repo: https://github.com/laughingbiscuit/lbdk.git
 #	Author: LaughingBiscuit
@@ -30,79 +30,62 @@ mkdir -p ~/.vim/pack/git-plugins/start
 mkdir -p ~/.local/share
 
 #####
-# prereqs
+# apks
 #####
 
-sudo apt-get update && sudo apt-get install -y curl gnupg apt-transport-https
-
-#####
-# apts
-#####
-
-echo "deb https://deb.nodesource.com/node_12.x $LSB_RELEASE main"|\
-  sudo tee /etc/apt/sources.list.d/nodesource.list
-echo "deb http://packages.cloud.google.com/apt cloud-sdk-$LSB_RELEASE main" |\
-  sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-
-curl -sSL "https://deb.nodesource.com/gpgkey/nodesource.gpg.key" |\
-  sudo apt-key add -
-curl -sSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" |\
-  sudo apt-key add -
-
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install -y \
+sudo echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+sudo apk update
+sudo apk upgrade
+sudo apk add \
   apache2-utils \
   bash-completion \
-  build-essential \
+  build-base \
   ca-certificates \
   calcurse \
   cmake  \
+  composer \
   ctags \
+  curl \
+  docker \
   figlet \
   git  \
-  google-cloud-sdk \
+  go \
   htop \
-  iputils-ping \
   jq  \
-  kubectl \
-  libcurl4-openssl-dev \
-  libssl-dev \
-  libxml2 \
-  libxml2-dev \
+  lastpass-cli \
+  libressl \
   lynx \
   man \
   maven \
-  mdp \
   mutt \
   nodejs \
-  openjdk-11-jdk-headless \
-  php \
-  pkg-config \
-  plantuml \
-  python-pip \
+  npm \
+  openjdk11-jdk \
+  py2-pip \
   ranger \
-  ruby-full \
-  taskwarrior \
-  tintin++ \
+  task \
+  terraform \
   tmux \
   unzip \
   urlscan \
-  vim 
+  vim \
+  yarn
+#  php7 \
+#  php7-tokenizer \
+#  ruby-dev \
+#  ruby-rdoc \
 
 #####
-# npm
+# yarn
 #####
 
-npm config set prefix $HOME/.npm-global
-sudo npm install -g \
+yarn config set prefix $HOME/.npm-global
+sudo yarn global add \
   apigeetool \
   eslint \
-  godaddy-dns \
   http-server \
   js-beautify \
   nodemon \
-  npm \
   jwt-cli \
   tldr
 
@@ -152,6 +135,11 @@ sudo pip install \
   linode-cli
 
 #####
+# build source
+#####
+curl -sSL https://sdk.cloud.google.com | bash
+
+#####
 # dotfiles
 #####
 
@@ -164,93 +152,24 @@ else
 fi
 
 #####
-# build source
-#####
-
-git -C ~/projects/lastpass-cli pull
-make -C ~/projects/lastpass-cli
-sudo make install -C ~/projects/lastpass-cli
-
-#####
 # UI Tools
 #####
- 
-if echo $@ | grep 'ui' -q  ; then
-	sudo apt-get install -y \
-    alsa-utils \
-    arandr \
-    compton \
-    feh \
-    chromium \
-    i3 \
-    xclip \
-    xfce4-terminal \
-    xinit
-#   kdenlive - only needed for video editing
-
-  if uname -m | grep 'arm' -q  ; then
-    sudo apt-get install -y chromium-browser
-  else
-    sudo apt-get install -y chromium
-  fi
-fi
-
-#####
-# Docker
-#####
-if echo $@ | grep 'docker' -q  ; then
-  curl -sSL https://get.docker.com | sh
-  sudo usermod -aG docker $USER || true
-fi
-
-#####
-# PHP
-#####
-
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-chmod +x /usr/local/bin/composer
-
-composer global require \
-  friendsofphp/php-cs-fixer
-
-#####
-# Ruby Gems
-#####
-
-sudo gem install travis
-echo "y" | travis
 
 #####
 # Binaries
 #####
 
 if uname -m | grep 'arm' -q  ; then
-  curl https://dl.google.com/go/go1.12.6.linux-armv6l.tar.gz -o /tmp/go.tar.gz
-  curl -o /tmp/terraform.zip \
-    https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_arm.zip
-  echo "No codelabs for arm"
   curl https://get.helm.sh/helm-v2.14.2-linux-arm.tar.gz -o /tmp/helm.tar.gz
   tar --overwrite -C /tmp -xzf /tmp/helm.tar.gz
   sudo mv /tmp/linux-arm/helm /usr/local/bin
 else
-  curl https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz -o /tmp/go.tar.gz
-  curl -o /tmp/terraform.zip \
-    https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
-  sudo curl -L https://github.com/googlecodelabs/tools/releases/download/v2.2.0/claat-linux-amd64 -o /usr/local/bin/claat
-  sudo chmod +x /usr/local/bin/claat
   curl https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz -o /tmp/helm.tar.gz
   tar --overwrite -C /tmp -xzf /tmp/helm.tar.gz
   sudo mv /tmp/linux-amd64/helm /usr/local/bin
 fi
-sudo tar --overwrite -C /usr/local -xzf /tmp/go.tar.gz
-sudo unzip -o -d /usr/local/bin /tmp/terraform.zip
 
-#####
-# Locale
-#####
-
-sudo sed -i 's/# en_GB.UTF-8/en_GB.UTF-8/g' /etc/locale.gen ||\
-  sudo echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen &&\
-  sudo apt-get install -y locales && sudo locale-gen || true
-
+go get github.com/googlecodelabs/tools/claat
+curl -sSL https://downloads.sourceforge.net/project/plantuml/1.2019.10/plantuml-jar-mit-1.2019.10.zip -o /tmp/plantuml.zip
+unzip -o -d /tmp/plantuml /tmp/plantuml.zip
+mv /tmp/plantuml/plantuml.jar $HOME/plantuml.jar

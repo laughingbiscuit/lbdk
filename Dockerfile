@@ -1,7 +1,8 @@
-FROM debian:buster
+FROM alpine:latest
 
 WORKDIR /root
 COPY . /root/lbdk
-RUN /root/lbdk/lbdk.sh
+RUN apk add bash
+RUN bash /root/lbdk/lbdk.sh
 
 CMD bash
