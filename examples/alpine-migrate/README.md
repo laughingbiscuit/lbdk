@@ -27,4 +27,4 @@ Time to build image:
 Size of image:
 2.29GB
 
-Take a look [here](https://github.com/laughingbiscuit/lbdk/commit/e9e30a7223b32860a7f097dd9e0221585f94108d) ☺
+Take a look at the diff of the setup script[here](https://github.com/laughingbiscuit/lbdk/commit/e9e30a7223b32860a7f097dd9e0221585f94108d) ☺
