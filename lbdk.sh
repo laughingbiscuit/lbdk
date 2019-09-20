@@ -138,6 +138,7 @@ sudo pip install \
 # build source
 #####
 curl -sSL https://sdk.cloud.google.com | bash
+$HOME/google-cloud-sdk/bin/gcloud components install kubectl --quiet
 
 #####
 # dotfiles
