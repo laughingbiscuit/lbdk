@@ -23,10 +23,8 @@ openssl version
 vim --version
 js-beautify --version
 eslint --version
-godaddy-dns --version
 lpass -v
 which http-server
-php-cs-fixer -V
 mutt -v 
 which gcalcli
 pip -V
@@ -35,12 +33,8 @@ gcloud -v
 which kubectl
 go version
 terraform version
-ruby -v
-gem -v
-echo "y" | travis
-which travis
 jwt -v
-ping -V
+which ping
 claat version || echo "let this slide, maybe we are on arm"
 which helm
 which figlet
