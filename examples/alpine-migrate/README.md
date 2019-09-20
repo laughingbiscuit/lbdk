@@ -13,14 +13,14 @@ docker rmi $(docker images -a -q)
 docker rm -f $(docker ps -a -q)
 ```
 
-## Terminal Tools Only
+## Terminal Tools Only - Before
 Time to build image:
 15mins 13secs
 
 Size of image:
 2.92GB
 
-## Result
+## Terminal Tools Only - After
 Time to build image:
 6mins
 
