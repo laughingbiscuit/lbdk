@@ -3,9 +3,9 @@ Migrating my Development Environment to Alpine
 
 My development environment is starting to feel bloated. Lets try to...
 
-Switch from Debian to Alpine
-Switch from NPM to Yarn
-Remove rarely used tools and runtimes
+- Switch from Debian to Alpine
+- Switch from NPM to Yarn
+- Remove rarely used tools and runtimes
 
 ## Clean down
 ```
