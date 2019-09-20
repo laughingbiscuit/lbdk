@@ -15,7 +15,7 @@ docker rm -f $(docker ps -a -q)
 
 ## Terminal Tools Only
 Time to build image:
-15m13.732s
+15mins 13secs
 
 Size of image:
 2.92GB
