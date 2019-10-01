@@ -41,7 +41,6 @@ sudo apk add \
   bash-completion \
   build-base \
   ca-certificates \
-  calcurse \
   cmake  \
   composer \
   ctags \
@@ -61,8 +60,6 @@ sudo apk add \
   nodejs \
   npm \
   openjdk11-jdk \
-  py2-pip \
-  ranger \
   task \
   terraform \
   tmux \
@@ -70,24 +67,19 @@ sudo apk add \
   urlscan \
   vim \
   yarn
-#  php7 \
-#  php7-tokenizer \
-#  ruby-dev \
-#  ruby-rdoc \
 
 #####
 # yarn
 #####
 
 yarn config set prefix $HOME/.npm-global
-sudo yarn global add \
+yarn global add \
   apigeetool \
   eslint \
   http-server \
   js-beautify \
   nodemon \
-  jwt-cli \
-  tldr
+  jwt-cli
 
 #####
 # git
@@ -116,7 +108,6 @@ PLUGINS=$(cat <<-END
   sbdchd/neoformat
   w0rp/ale
   gyim/vim-boxdraw
-
 END
 )
 
@@ -125,14 +116,6 @@ for REPO in $PLUGINS; do
 	git clone --depth 1 https://github.com/$REPO \
     ~/.vim/pack/git-plugins/start/$DIR || true
 done
-
-#####
-# pip plugins
-#####
-
-sudo pip install \
-  gcalcli \
-  linode-cli
 
 #####
 # build source
@@ -171,6 +154,3 @@ else
 fi
 
 go get github.com/googlecodelabs/tools/claat
-curl -sSL https://downloads.sourceforge.net/project/plantuml/1.2019.10/plantuml-jar-mit-1.2019.10.zip -o /tmp/plantuml.zip
-unzip -o -d /tmp/plantuml /tmp/plantuml.zip
-mv /tmp/plantuml/plantuml.jar $HOME/plantuml.jar
