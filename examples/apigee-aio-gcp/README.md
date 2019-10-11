@@ -35,8 +35,8 @@ gcloud compute ssh $GCLOUD_USER@aio --command "yum repolist | grep epel"
 
 Install apigee-setup
 ```bash
-gcloud compute ssh $GCLOUD_USER@aio --command "curl https://software.apigee.com/bootstrap_4.19.01.sh -o /tmp/bootstrap_4.19.01.sh"
-gcloud compute ssh $GCLOUD_USER@aio --command "sudo bash /tmp/bootstrap_4.19.01.sh apigeeuser=$APIGEE_REPO_USER apigeepassword=$APIGEE_REPO_PASS"
+gcloud compute ssh $GCLOUD_USER@aio --command "curl https://software.apigee.com/bootstrap_4.19.06.sh -o /tmp/bootstrap.sh"
+gcloud compute ssh $GCLOUD_USER@aio --command "sudo bash /tmp/bootstrap.sh apigeeuser=$APIGEE_REPO_USER apigeepassword=$APIGEE_REPO_PASS"
 gcloud compute ssh $GCLOUD_USER@aio --command "/opt/apigee/apigee-service/bin/apigee-service apigee-setup install"
 
 ```
