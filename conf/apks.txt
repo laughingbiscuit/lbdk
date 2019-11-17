@@ -1,0 +1,13 @@
+curl 
+git 
+g++
+jq 
+lastpass-cli 
+libressl 
+lynx 
+openssh 
+make
+nodejs 
+npm 
+tmux 
+vim

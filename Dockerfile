@@ -1,8 +1,6 @@
 FROM alpine:latest
 
-WORKDIR /root
-COPY . /root/lbdk
-RUN apk add bash
-RUN bash /root/lbdk/lbdk.sh
+ADD . /tmp
+RUN /tmp/lbdk.sh
 
-CMD bash
+CMD sh
