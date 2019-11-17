@@ -22,9 +22,6 @@ set -o pipefail
 install_lbdk()
 {
 
-  SCRIPT=$(readlink -f "$0")
-  CONFPATH=$(dirname "$SCRIPT")/conf
-
   # stub sudo if no argument is provided
   if ! echo $@ | grep 'sudo' -q  ; then function sudo { "$@"; }; fi
 
@@ -32,23 +29,30 @@ install_lbdk()
   sudo apk update
   sudo apk upgrade
   sudo apk add man
-  APKS=`cat $CONFPATH/apks.txt`
-  sudo apk add $APKS
+  sudo apk add \
+    curl git g++ jq lastpass-cli libressl lynx openssh make nodejs npm tmux vim
 
   # node js
   npm config set unsafe-perm true
   npm config set prefix $HOME/.npm-global
-  NPM_PKGS=`cat $CONFPATH/npm-packages.txt`
-  npm install -g $NPM_PKGS
+  npm install -g apigeetool eslint http-server js-beautify jwt-cli
 
   # git
-  REPOS=`cat $CONFPATH/git-repos.txt`
+  REPOS="\
+  apickli/apickli \
+  apigee/openbank \
+  apigee/docker-apigee-drupal-kickstart \
+  jlevy/the-art-of-command-line \
+  mikesson/apigee-mint-cli \
+  seymen/accelerator-ci-maven \
+  seymen/apickli-ff"
+
   for REPO in $REPOS; do
     DIR=`echo $REPO | cut -d "/" -f 2`
   done
 
   # vim
-  PLUGINS=`cat $CONFPATH/vim-plugins.txt`
+  PLUGINS="sbdchd/neoformat w0rp/ale"
   for REPO in $PLUGINS; do
     DIR=`echo $REPO | cut -d "/" -f 2`
     git clone --depth 1 https://github.com/$REPO \
