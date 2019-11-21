@@ -1,6 +1,7 @@
 FROM alpine:latest
 
-ADD . /tmp
-RUN /tmp/lbdk.sh
+ENV ENV /root/.profile
+ADD . /root/lbdk
+RUN /root/lbdk/lbdk.sh
 
 CMD sh

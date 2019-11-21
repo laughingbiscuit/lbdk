@@ -58,6 +58,12 @@ install_lbdk()
     git clone --depth 1 https://github.com/$REPO \
       ~/.vim/pack/git-plugins/start/$DIR || true
   done
+
+  # copy dotfiles
+  SCRIPT=$(readlink -f "$0")
+  # Absolute path this script is in, thus /home/user/bin
+  SCRIPTPATH=$(dirname "$SCRIPT")
+  for x in $(ls -a $SCRIPTPATH/dotfiles); do cp $SCRIPTPATH/dotfiles/$x /root || true; done
   
 }
 
