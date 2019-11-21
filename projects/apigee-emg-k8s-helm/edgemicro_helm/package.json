@@ -1,0 +1,18 @@
+{
+  "name": "edgemicro_helm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts" : {
+    "deploy": "npm i && npx apigeetool deployproxy -u $APIGEE_USER -p $APIGEE_PASS -o $APIGEE_ORG -e $APIGEE_ENV -n $npm_package_name -V"
+  },
+  "devDependencies": {
+    "apigeetool": "^0.9.2"
+  }
+}
