@@ -39,7 +39,7 @@ install()
   curl -o /tmp/gcloud.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-271.0.0-linux-x86_64.tar.gz
 
   # tar
-  tar -xvzf /tmp/gcloud.tar.gz -C /root
+  sudo tar -xvzf /tmp/gcloud.tar.gz -C $HOME
 }
 
 install $@
