@@ -1,0 +1,109 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Setting up Keycloak All-in-one</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="keycloak-aio"
+                  title="Setting up Keycloak All-in-one"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Start Keycloak" duration="0">
+        <pre><code>docker run --name=some-keycloak -e DB_VENDOR=h2 -e DB_ADDR= -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=Password123 -p 8080:8080 -itd jboss/keycloak
+</code></pre>
+<p>Startup time can take a while. You can check the logs to see progress:</p>
+<pre><code>docker logs -f some-keycloak
+</code></pre>
+<p>You can check everything looks good by logging into the Admin console at<br><code>localhost:8080</code> with <code>admin</code> and <code>Password123</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creating a client" duration="0">
+        <p>You can create a client using the Admin console or using the API.</p>
+<h2 is-upgraded>Get an Admin Access Token</h2>
+<pre><code>export ADMIN_TOKEN=$(curl &#39;http://localhost:8080/auth/realms/master/protocol/openid-connect/token&#39;  -H &#34;Content-Type: application/x-www-form-urlencoded&#34; -d &#34;username=admin&#34; -d &#39;password=Password123&#39; -d &#39;grant_type=password&#39; -d &#39;client_id=admin-cli&#39; | jq -r &#39;.access_token&#39;)
+</code></pre>
+<h2 is-upgraded>POST the client</h2>
+<pre><code>curl -v localhost:8080/auth/admin/realms/master/clients -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; -H &#39;Content-Type: application/json&#39; -d &#39;@client.json&#39;
+</code></pre>
+<h2 is-upgraded>Get the generated id for the client</h2>
+<pre><code>export CLIENT_UUID=$(curl &#39;localhost:8080/auth/admin/realms/master/clients?clientId=seans-client&#39; -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; | jq -r &#39;.[0].id&#39;)
+</code></pre>
+<h2 is-upgraded>Get the generated client secret</h2>
+<pre><code>export CLIENT_SECRET=$(curl &#34;localhost:8080/auth/admin/realms/master/clients/$CLIENT_UUID/client-secret&#34; -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; | jq -r &#39;.value&#39;)
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Client Credentials Access Token" duration="0">
+        <pre><code>curl localhost:8080/auth/realms/master/protocol/openid-connect/token -d &#39;grant_type=client_credentials&#39; -u seans-client:$CLIENT_SECRET | jq
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Password Grant Access Token" duration="0">
+        <h2 is-upgraded>Create a user</h2>
+<pre><code>curl -v localhost:8080/auth/admin/realms/master/users -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; -H &#39;Content-Type: application/json&#39; -d &#39;@user.json&#39;
+
+</code></pre>
+<h2 is-upgraded>Get User UUID</h2>
+<pre><code>export USER_UUID=$(curl -v localhost:8080/auth/admin/realms/master/users?username=someone -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; | jq -r &#39;.[0].id&#39;)
+
+</code></pre>
+<h2 is-upgraded>Set User Password</h2>
+<pre><code>curl -v localhost:8080/auth/admin/realms/master/users/$USER_UUID/reset-password -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; -H &#39;Content-Type: application/json&#39; -d &#39;@pass.json&#39; -XPUT
+</code></pre>
+<h2 is-upgraded>Get Access Token</h2>
+<pre><code>curl localhost:8080/auth/realms/master/protocol/openid-connect/token -d &#34;grant_type=password&amp;username=someone&amp;password=password&#34; -u seans-client:$CLIENT_SECRET | jq
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Authorization Code Grant" duration="0">
+        <h2 is-upgraded>Login, Consent, Auth Code</h2>
+<pre><code>xdg-open localhost:8080/auth/realms/master/protocol/openid-connect/auth?client_id=seans-client\&amp;response_type=code
+</code></pre>
+<ul>
+<li>Login</li>
+<li>Consent<br><br><code># store auth code from redirect uri<br>export AUTH_CODE=xxx<br></code></li>
+</ul>
+<h2 is-upgraded>Get Access Token</h2>
+<pre><code>curl localhost:8080/auth/realms/master/protocol/openid-connect/token -d &#34;grant_type=authorization_code&amp;code=$AUTH_CODE&#34; -u seans-client:$CLIENT_SECRET | jq
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

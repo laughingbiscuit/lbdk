@@ -1,0 +1,15 @@
+{
+  "name": "apigee-node-v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "NONE",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
