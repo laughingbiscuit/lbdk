@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Get Dependencies') {
+            steps {
+                echo 'Getting dependencies..'
+                sh 'npm install --prefix ./projects/apigee-v1'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                sh 'npm run deploy --prefix ./projects/apigee-v1'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                sh 'npm test --prefix ./projects/apigee-v1'
+            }
+        }
+    }
+}
