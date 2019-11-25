@@ -2,7 +2,7 @@
 
 
 ```
-docker run -itd --name=some-jenkins -p 8080:8080 -p 50000:50000 jenkins058dfa1b4b7ea62d137c95b2b611
+docker run -itd --name=some-jenkins -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts
 export ADMIN_PASS=$(docker exec -it some-jenkins cat /var/jenkins_home/secrets/initialAdminPassword)
 ```
 
