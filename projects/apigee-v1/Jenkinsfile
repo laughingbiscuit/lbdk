@@ -1,6 +1,6 @@
 pipeline {
 
-    agent { docker { image 'node:lts' } }
+    agent any
 
     stages {
         stage('Get Dependencies') {
