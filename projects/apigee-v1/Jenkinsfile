@@ -27,13 +27,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'npm run deploy --prefix ./projects/apigee-v1 -- -o ${params.Org} -e ${params.Env}'
+                sh "npm run deploy --prefix ./projects/apigee-v1 -- -o ${params.Org} -e ${params.Env}"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'npm test --prefix ./projects/apigee-v1 -- -o ${params.Org} -e ${params.Env}'
+                sh "npm test --prefix ./projects/apigee-v1 -- -o ${params.Org} -e ${params.Env}"
             }
         }
     }
