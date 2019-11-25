@@ -2,6 +2,21 @@ pipeline {
 
     agent any
 
+    /*
+    * Use the agent below if you want to run the build in docker instead of global nodejs
+    */
+    //agent { docker { image 'node:lts' } }
+
+    environment {
+      APIGEE_USER = credentials('jenkins-apigee-username')
+      APIGEE_PASS = credentials('jenkins-apigee-password')
+    }
+
+    parameters {
+      string(name: 'Org', description: 'Apigee Organization')
+      string(name: 'Env', description: 'Apigee Environment')
+    }
+
     stages {
         stage('Get Dependencies') {
             steps {
@@ -12,13 +27,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'npm run deploy --prefix ./projects/apigee-v1'
+                sh 'npm run deploy --prefix ./projects/apigee-v1 -- -o ${params.Org} -e ${params.Env}'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'npm test --prefix ./projects/apigee-v1'
+                sh 'npm test --prefix ./projects/apigee-v1 -- -o ${params.Org} -e ${params.Env}'
             }
         }
     }
