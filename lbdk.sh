@@ -30,7 +30,8 @@ install_lbdk()
   sudo apk upgrade
   sudo apk add man
   sudo apk add \
-    curl git g++ jq lastpass-cli libressl lynx openssh make nodejs npm tmux vim
+    curl git g++ jq lastpass-cli libressl lynx openssh python make nodejs \
+    npm tmux vim
 
   # node js
   npm config set unsafe-perm true
