@@ -13,6 +13,15 @@ Startup time can take a while. You can check the logs to see progress:
 docker logs -f some-keycloak
 ```
 
+For development purposes, you might need to disable the ssl requirement
+```
+docker exec -it some-keycloak bash
+sh /opt/jboss/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin
+# enter password
+sh /opt/jboss/keycloak/bin/kcadm.sh update realms/master -s sslRequired=NONE
+```
+
+
 You can check everything looks good by logging into the Admin console at 
 `localhost:8080` with `admin` and `Password123`.
 
