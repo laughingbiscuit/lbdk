@@ -7,8 +7,8 @@ Feature:
   Scenario: Successful Request
     Given I have basic authentication credentials seans-client and password
     And I set form parameters to
-	    | name	    	| value			          |
-    	| grant_type	| client_credentials	|
+        | name          | value                 |
+        | grant_type    | client_credentials    |
     When I POST to /auth/realms/master/protocol/openid-connect/token
     Then response code should be 401
 	
