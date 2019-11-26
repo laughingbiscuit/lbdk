@@ -33,7 +33,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "npm test --prefix ./projects/apigee-v1 -- -o ${params.Org} -e ${params.Env}"
+                sh "APIGEE_ORG=${params.Org} APIGEE_ENV=${params.Env} npm test --prefix ./projects/apigee-v1"
             }
         }
     }
