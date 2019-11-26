@@ -3,15 +3,7 @@ Feature:
   I want to obtain an access token
   So that a user can delegate access for my application for a limited time
   and scope
-
-  Scenario: Successful Request
-    Given I have basic authentication credentials seans-client and password
-    And I set form parameters to
-        | name          | value                 |
-        | grant_type    | client_credentials    |
-    When I POST to /auth/realms/master/protocol/openid-connect/token
-    Then response code should be 401
-	
+  
   Scenario: Successfully /ping
     When I GET /ping
     Then response code should be 200
