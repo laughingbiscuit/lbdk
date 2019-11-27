@@ -1,0 +1,6 @@
+<AssignMessage name="Assign.StatusRequest">
+  <AssignVariable>
+    <Name>target.url</Name>
+    <Template>{target.url}/auth/realms/master</Template>
+  </AssignVariable>
+</AssignMessage>

@@ -7,10 +7,14 @@ Feature:
   Scenario: Successfully /ping
     When I GET /ping
     Then response code should be 200
+    And response body should be valid json
+    And response body path $.success should be true
 	
   Scenario: Successfully /status
     When I GET /status
     Then response code should be 200
+    And response body should be valid json
+    And response body path $.success should be true
 
   Scenario: Successfully /authorize   
     Given I set query parameters to

@@ -1,21 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-    <Description/>
-    <FaultRules/>
-    <PreFlow name="PreFlow">
-        <Request/>
-        <Response/>
-    </PreFlow>
-    <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
-    </PostFlow>
-    <Flows/>
+    <Flows>
+      <Flow name="GET /ping">
+        <Condition>
+          request.verb = "GET" and 
+          proxy.pathsuffix MatchesPath "/ping"
+        </Condition>
+        <Response>
+          <Step>
+            <Name>Assign.PingResponse</Name>
+          </Step>
+        </Response>
+      </Flow>
+      <Flow name="GET /status">
+        <Condition>
+          request.verb = "GET" and 
+          proxy.pathsuffix MatchesPath "/status"
+        </Condition>
+        <Response>
+          <Step>
+            <Name>Assign.StatusResponse</Name>
+          </Step>
+        </Response>
+      </Flow>
+      <Flow name="GET /authorize">
+        <Condition>
+          request.verb = "GET" and 
+          proxy.pathsuffix MatchesPath "/authorize"
+        </Condition>
+        <Request>
+          <Step>
+            <Name>Verify.ClientId</Name>
+          </Step>
+          <Step>
+            <Condition>
+              verifyapikey.Verify.ClientId.redirect_uris !=
+              request.queryparam.redirect_uri
+            </Condition>
+            <Name>Raise.InvalidRedirectURI</Name>
+          </Step>
+          <Step>
+            <Name>KVM.GetKeycloakCredentials</Name>
+          </Step>
+          <Step>
+            <Name>Generate.State2</Name>
+          </Step>
+        </Request>
+      </Flow>
+    </Flows>
     <HTTPProxyConnection>
         <BasePath>/identity/v1</BasePath>
-        <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
+    <RouteRule name="none">
+      <Condition>
+          request.verb = "GET" and 
+          proxy.pathsuffix MatchesPath "/ping"
+      </Condition>
+    </RouteRule>
     <RouteRule name="default">
         <TargetEndpoint>default</TargetEndpoint>
     </RouteRule>

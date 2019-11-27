@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TargetEndpoint name="default">
-    <Description/>
-    <FaultRules/>
-    <PreFlow name="PreFlow">
-        <Request/>
-        <Response>
-            <Step>
-                <Name>add-cors</Name>
-            </Step>
-        </Response>
-    </PreFlow>
-    <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
-    </PostFlow>
-    <Flows/>
+    <Flows>
+      <Flow name="GET /status">
+        <Condition>
+          request.verb = "GET" and 
+          proxy.pathsuffix MatchesPath "/status"
+        </Condition>
+        <Request>
+          <Step>
+            <Name>Assign.StatusRequest</Name>
+          </Step>
+        </Request>
+      </Flow>
+    </Flows>
     <HTTPTargetConnection>
         <Properties/>
         <URL>http://35.187.9.91</URL>
