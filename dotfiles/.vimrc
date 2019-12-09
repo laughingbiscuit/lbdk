@@ -16,7 +16,6 @@ let g:netrw_banner=0
 set splitbelow
 set splitright
 
-
 "set formatters
 map gg=G :Neoformat<CR>
 
@@ -29,3 +28,4 @@ noremap hjkl :call CopyLine()<CR><CR>
 
 noremap ; :
 let g:netrw_liststyle = 3
+colorscheme darkblue
