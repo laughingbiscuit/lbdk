@@ -21,6 +21,6 @@ done
 
 This uses JQ to iterate the config JSON and make multiple calls.
 
-There isn't currently a tool that does this using `apigeetool`, so similar scripts would need to be written for Caches, Extensions, TargetServers, VHosts, KeyStores etc.
+There isn't currently a tool that does this using `apigeetool`, so similar scripts would need to be written for Caches, Extensions, TargetServers, VHosts, KeyStores etc. This should be considered when deciding whether to use Maven, apigeetool or a different deployment tool.
 
-This should be considered when deciding whether to use Maven, apigeetool or a different deployment tool.
+In addition, at the time of writing `apigeetool` only supports insert and delete on KVM entries, not upsert. This is supported within Maven.
