@@ -1,9 +1,9 @@
 Apigeetool and JQ
 ---
 
-Apigeetool alone acts as a wrapper around the Management API. There are Maven plugins such as the [Apigee Config Maven Plugin](https://github.com/apigee/apigee-config-maven-plugin/tree/master/samples/EdgeConfig/resources/edge/env/test) that allow environment configuration to be stored in files and deployed.
+[Apigeetool](https://www.npmjs.com/package/apigeetool) acts as a wrapper around the [Management](https://apidocs.apigee.com/management/apis) API. There are Maven plugins such as the [Apigee Config Maven Plugin](https://github.com/apigee/apigee-config-maven-plugin) that allow environment configuration to be stored in files and deployed.
 
-The same can be achieved with Apigeetool and JQ.
+The same can be achieved with [Apigeetool](https://www.npmjs.com/package/apigeetool) and [JQ](https://stedolan.github.io/jq/).
 
 For example, for `kvms.json` we can use the following script:
 
