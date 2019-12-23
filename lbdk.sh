@@ -30,7 +30,7 @@ install_lbdk()
   sudo apk upgrade
   sudo apk add man
   sudo apk add \
-    curl git g++ jq lastpass-cli less libressl lynx openssh python make nodejs tar \
+    curl git jq lastpass-cli less libressl lynx openssh python make nodejs tar \
     npm tmux vim
 
   # node js
