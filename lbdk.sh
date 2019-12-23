@@ -72,6 +72,11 @@ install_lbdk()
   tar -xvzf $HOME/gcloud.tar.gz
   rm -r $HOME/gcloud.tar.gz
   
+  # kubectl
+  curl -sSL https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/arm64/kubectl -o $HOME/google-cloud-sdk/bin/kubectl
+  chmod +x $HOME/google-cloud-sdk/bin/kubectl
+
+  
 }
 
 install_lbdk $@
