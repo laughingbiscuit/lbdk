@@ -18,3 +18,14 @@ tar --version
 npm  --version
 tmux -V
 vim --version
+
+# npm
+which apigeetool
+which eslint
+which http-server
+which js-beautify
+which jwt-cli
+
+# gcloud bins
+gcloud --version
+kubectl --version

@@ -1,2 +1,2 @@
-export PATH=$PATH:$HOME/lbdk/scripts:$HOME/google-cloud-sdk/bin
+export PATH=$PATH:$HOME/lbdk/scripts:$HOME/google-cloud-sdk/bin:$HOME/.npm-global/bin
 export PS1="$ "

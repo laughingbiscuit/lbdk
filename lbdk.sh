@@ -69,12 +69,13 @@ install_lbdk()
   curl -sSL \
     https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-274.0.0-linux-x86_64.tar.gz \
     -o $HOME/gcloud.tar.gz
-  tar -xvzf $HOME/gcloud.tar.gz
+  tar -xvzf $HOME/gcloud.tar.gz -C $HOME
   rm -r $HOME/gcloud.tar.gz
   
   # kubectl
-  curl -sSL https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/arm64/kubectl -o $HOME/google-cloud-sdk/bin/kubectl
-  chmod +x $HOME/google-cloud-sdk/bin/kubectl
+  ARCH=$([ `uname -m` = 'x86_64' ] && 'amd' || 'arm')
+  curl -sSL https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/${ARCH}64/kubectl -o /usr/bin/kubectl
+  chmod +x /usr/bin/kubectl
 
   
 }
