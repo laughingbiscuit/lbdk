@@ -4,4 +4,4 @@ services:
 before_install:
 - docker build -t lb/dk .
 script:
-- docker run -it lb/dk 'source /root/.profile && /root/lbdk/test.sh'
+- docker run -it lb/dk '/root/lbdk/test.sh'

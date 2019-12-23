@@ -3,6 +3,8 @@
 set -e 
 set -x
 
+source $HOME/.profile
+
 # check apk packages installed
 curl --version
 git --version
