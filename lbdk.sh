@@ -30,7 +30,7 @@ install_lbdk()
   sudo apk upgrade
   sudo apk add man
   sudo apk add \
-    curl git g++ jq lastpass-cli libressl lynx openssh python make nodejs \
+    curl git g++ jq lastpass-cli less libressl lynx openssh python make nodejs tar \
     npm tmux vim
 
   # node js
@@ -62,9 +62,15 @@ install_lbdk()
 
   # copy dotfiles
   SCRIPT=$(readlink -f "$0")
-  # Absolute path this script is in, thus /home/user/bin
   SCRIPTPATH=$(dirname "$SCRIPT")
-  for x in $(ls -a $SCRIPTPATH/dotfiles); do cp $SCRIPTPATH/dotfiles/$x /root || true; done
+  for x in $(ls -a $SCRIPTPATH/dotfiles); do cp $SCRIPTPATH/dotfiles/$x $HOME || true; done
+
+  # gcloud
+  curl -sSL \
+    https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-274.0.0-linux-x86_64.tar.gz \
+    -o $HOME/gcloud.tar.gz
+  tar -xvzf $HOME/gcloud.tar.gz
+  rm -r $HOME/gcloud.tar.gz
   
 }
 
