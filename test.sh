@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e 
+set -x
 
 # check apk packages installed
 curl --version
@@ -24,8 +25,8 @@ which apigeetool
 which eslint
 which http-server
 which js-beautify
-which jwt-cli
+which jwt
 
 # gcloud bins
 gcloud --version
-kubectl --version
+kubectl version --client

@@ -73,10 +73,9 @@ install_lbdk()
   rm -r $HOME/gcloud.tar.gz
   
   # kubectl
-  ARCH=$([ `uname -m` = 'x86_64' ] && 'amd' || 'arm')
+  ARCH=$([ `uname -m` = 'x86_64' ] && echo 'amd' || echo 'arm')
   curl -sSL https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/${ARCH}64/kubectl -o /usr/bin/kubectl
   chmod +x /usr/bin/kubectl
-
   
 }
 
