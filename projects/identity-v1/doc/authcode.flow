@@ -1,0 +1,44 @@
+participant User as u
+participant ClientFrontend as a
+participant ClientBackend as c
+participant UserAgent as ua
+participant Apigee as api
+participant Keycloak as k
+
+u->a: Click Login
+
+a-> api: GET apigee/authorize?(params)
+note over api, a: 
+Client Id, Redirect URI, State, Scope
+end note
+
+api->api: Valid Client ID + Redirect
+api->api: Set Apigee/Keycloak Credentials
+
+api->a: 302 keycloak/authorize?(params)
+a->ua: Follow Redirect
+ua->k: GET keycloak/authorize?(param)
+k->k: Validate Apigees Credentials
+k->ua: Login HTML
+u->ua: Enter credentials
+ua->k: Submit login
+k->ua: 302 apigee/callback?code=xx state=xx
+ua->api: GET /callback?code=xx state=xx
+
+api->api: extract code + client redirect uri
+api->ua: 302 tpp/callback?code=xx state=xx
+
+ua->c: Follow Redirect
+c->c: Extract Auth Code
+
+c->api: POST /token
+note over c, api:
+  client id + *secret* + code
+ end note over 
+
+api->api: validate id + secret
+api->k: POST /token + Apigee Credentials
+k->api: ID Token + Access Token
+api->api: Rebuild JWT
+api->c: ID + Access Token
+c->a: Display "Login Success" in App

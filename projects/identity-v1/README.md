@@ -1,6 +1,10 @@
 Example Apigee Project
 ---
 
+## Flow
+
+![Flow](./doc/authcode.png)
+
 ## Proxy Code
 
 Proxy Code can be found in the `apiproxy` directory.
