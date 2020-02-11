@@ -1,4 +1,4 @@
-Example Apigee Project
+Identity Example for Keycloak
 ---
 
 ## Flow
