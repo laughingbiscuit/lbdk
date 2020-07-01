@@ -13,7 +13,7 @@ apk add \
     less \
     libressl \
     lynx \
-    man \
+    mandoc \
     man-pages \
     nnn \
     nodejs \
