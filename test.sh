@@ -1,34 +1,19 @@
 #!/bin/sh
 
 set -e 
-set -x
 
-source $HOME/.profile
-
-# check apk packages installed
+which busybox-extras
 curl --version
+docker -v
 git --version
 jq --version
 lpass --version
 less --version
 libressl --version
 which lynx
-which ssh
-python  --version
-make --version
+which man
+nnn -v
 node --version
-tar --version
 npm  --version
+which ssh
 tmux -V
-vim --version
-
-# npm
-which apigeetool
-which eslint
-which http-server
-which js-beautify
-which jwt
-
-# gcloud bins
-gcloud --version
-kubectl version --client

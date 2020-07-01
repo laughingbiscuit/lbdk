@@ -1,0 +1,6 @@
+[submodule "devrel"]
+	path = devrel
+	url = https://github.com/apigee/devrel
+[submodule "apickli"]
+	path = apickli
+	url = https://github.com/apickli/apickli
