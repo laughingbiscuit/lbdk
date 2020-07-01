@@ -12,7 +12,7 @@ less --version
 libressl --version
 which lynx
 which man
-nnn -v
+nnn -V
 node --version
 npm  --version
 which ssh
