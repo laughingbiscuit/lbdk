@@ -1,3 +1,4 @@
 **/node_modules/**
 .ash_history
 .lpass/
+.gitconfig
