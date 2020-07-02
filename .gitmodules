@@ -4,3 +4,6 @@
 [submodule "apickli"]
 	path = apickli
 	url = https://github.com/apickli/apickli
+[submodule "laughingbiscuit.com"]
+	path = laughingbiscuit.com
+	url = https://github.com/laughingbiscuit/laughingbiscuit.github.io
